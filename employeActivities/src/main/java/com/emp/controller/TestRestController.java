@@ -40,16 +40,11 @@ public class TestRestController {
 		//return new ResponseEntity.of(empList,HttpStatus.OK);
 		
 		return new ResponseEntity<List<Employee>>(empList, HttpStatus.OK);
-		
-		
-		
-		
 	}
 	@PostMapping("/empsave")
-	public Optional<Employee> saveemp(Employee emp){
-		
-		emp=empservice.saveemp(emp);
-		
+	public Optional<Employee> empsaveOrUpdate(Employee emp){
+		emp=empservice.empsaveOrUpdate(emp);
+		System.out.println(""+emp.getEmpid());
 		return Optional.of(emp);
 	}
 	
