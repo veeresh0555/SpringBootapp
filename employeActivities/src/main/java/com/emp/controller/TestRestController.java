@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.emp.exception.RecordNotFoundException;
 import com.emp.model.Employee;
 import com.emp.service.EmployeeService;
+
 
 @RestController
 @RequestMapping("employeactivities/api")
@@ -33,7 +35,7 @@ public class TestRestController {
 	
 	
 	@GetMapping("/allemployees")
-	public ResponseEntity<?> getAllEmployees() {
+	public ResponseEntity<?> getAllEmployees() throws RecordNotFoundException {
 		
 		List<Employee> empList=empservice.getAllemployees();
 		
