@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.emp.exception.RecordNotFoundException;
 import com.emp.model.Employee;
 import com.emp.repository.EmployeeRepository;
 
@@ -34,6 +35,21 @@ public class EmployeeServiceImpl implements EmployeeService {
 			emp=empRepository.save(emp);
 		}
 		return emp;
+	}
+
+	@Override
+	public Employee getempById(long empid) throws RecordNotFoundException {
+		
+		Optional<Employee> empById=empRepository.findById(empid);
+		
+		if(empById.isPresent()) {
+			Employee empByIds=empById.get();
+			return empByIds;
+		}else {
+			throw new RecordNotFoundException("Recor");
+		}
+		
+		//return empByIds;
 	}
 
 }
